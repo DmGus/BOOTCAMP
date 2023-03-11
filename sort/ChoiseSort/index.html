@@ -1,35 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Сортировка выбором</title>
     <script>
-        var numbers = [3,7,1,5,4,9]
-        document.write(numbers);
-        var size = numbers.length;
+        function getRandom(n) {
+            return Math.round(Math.random() * n);
+        }
 
-        for (var current = 0; current < size; current++)
-        {
-            var position = current;
-            for (var i = current; i < size; i++) 
-            {
-                if (numbers[i]>numbers[position]) position=i;
+        function getArray(count, n) {
+            var tempArray = [];
+            for (let i = 0; i < count; i++) {
+                tempArray[i] = getRandom(n);
             }
-            var temp = numbers[current];
-            numbers[current]=numbers[position];
-            numbers[position]=temp;
+            return tempArray;
+        }
 
-            document.write("<br>"+numbers);
+        function sortArray(oldArray)
+        {
+            var newArray=[];
+            var size = oldArray.length;            
+            for (var current = 0; current < size - 1; current++) 
+                {
+                var position = current;
+                for (var i = current + 1; i < size; i++) 
+                    {
+                    if (oldArray[i] > oldArray[position]) position = i;
+                    }
+                var temp = oldArray[current];
+                oldArray[current] = oldArray[position];
+                oldArray[position] = temp;
+                }        
+            return oldArray;
+        }
 
-        }      
+
+
+
+        var numbers = getArray(10, 20);
+        document.write(numbers+" <<< исходный массив <br>");
+        document.write(sortArray(numbers) + " <<< сортированный массив <br>");
         
+        // var size = numbers.length;
+
+        // for (var current = 0; current < size - 1; current++) {
+        //     var position = current;
+        //     for (var i = current + 1; i < size; i++) {
+        //         if (numbers[i] > numbers[position]) position = i;
+        //     }
+        //     var temp = numbers[current];
+        //     numbers[current] = numbers[position];
+        //     numbers[position] = temp;
+
+        //     document.write(numbers + ` <<< ${current} повтор <br>`);
+
+        // }
+
 
 
     </script>
 
-    
+
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
